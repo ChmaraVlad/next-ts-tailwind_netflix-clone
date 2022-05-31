@@ -1,6 +1,8 @@
 // core
 import Image from "next/image"
 import { useEffect, useState } from "react"
+import { InformationCircleIcon } from "@heroicons/react/outline"
+import { FaPlay } from 'react-icons/fa'
 
 // constants
 import { baseUrl } from "../constants/movie"
@@ -8,9 +10,9 @@ import { baseUrl } from "../constants/movie"
 // types
 import { Movie } from "../types"
 
-//utils
-import { FaPlay } from 'react-icons/fa'
-import { InformationCircleIcon } from "@heroicons/react/outline"
+// bus
+import { useMovie } from "../redux/bus/movie"
+import { useTogglersRedux } from "../redux/bus/client/togglers"
 
 interface Props {
      netflixOriginals: Movie[]
@@ -18,11 +20,14 @@ interface Props {
 
 function Banner({ netflixOriginals }: Props) {
      const [movie, setMovie] = useState<Movie | null>(null)
-
+     const { setTogglerAction } = useTogglersRedux()
+     const { addCurrentMovie } = useMovie()
+     
      useEffect(() => {
           setMovie(
                netflixOriginals[Math.floor(Math.random() * netflixOriginals.length)]
-          )
+               )
+          
      }, [netflixOriginals])
 
      return (
@@ -53,7 +58,14 @@ function Banner({ netflixOriginals }: Props) {
                          Play
                     </button>
                     <button
-                         className="banner__button bg-[gray]/70">
+                         className="banner__button bg-[gray]/70"
+                         onClick={
+                              () => {
+                                   movie && addCurrentMovie(movie)
+                                   setTogglerAction({ type: 'showModal', value: true })
+                              }
+                         }
+                    >
                          More Info
                          <InformationCircleIcon className="h-5 w-5 md:h-8 md:w-8" />
                     </button>
