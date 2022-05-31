@@ -6,16 +6,26 @@
     "start": "next start"
   },
   "dependencies": {
+    "@emotion/react": "^11.9.0",
+    "@emotion/styled": "^11.8.1",
     "@heroicons/react": "^1.0.6",
+    "@mui/material": "^5.8.1",
+    "@reduxjs/toolkit": "^1.8.2",
+    "firebase": "^9.8.2",
     "next": "latest",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-hook-form": "^7.31.3",
     "react-icons": "^4.3.1",
+    "react-player": "^2.10.1",
+    "react-redux": "^8.0.2",
+    "redux-logger": "^3.0.6",
     "tailwind-scrollbar-hide": "^1.1.7"
   },
   "devDependencies": {
     "@types/node": "17.0.4",
     "@types/react": "17.0.38",
+    "@types/redux-logger": "^3.0.9",
     "autoprefixer": "^10.4.0",
     "postcss": "^8.4.5",
     "prettier": "^2.5.1",
