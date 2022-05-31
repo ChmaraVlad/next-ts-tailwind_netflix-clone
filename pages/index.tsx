@@ -1,16 +1,21 @@
 // core
 import Head from 'next/head'
 
+// Bus
+import { useTogglersRedux } from '../redux/bus/client/togglers'
+
 // Components
 import Header from '../components/Header'
 import Banner from '../components/Banner'
+import Row from '../components/Row'
+import Modal from '../components/Modal'
 
 // Utils
+import useAuth from '../hooks/useAuth'
 import customRequests from '../utils/customRequests'
 
 // Types
 import { Movie } from '../types'
-import Row from '../components/Row'
 
 interface Props {
   netflixOriginals: Movie[]
@@ -22,6 +27,7 @@ interface Props {
   romanceMovies: Movie[]
   documentaries: Movie[]
 }
+
 const Home = ({
   netflixOriginals,
   actionMovies,
@@ -33,10 +39,15 @@ const Home = ({
   trendingNow,
 }: Props) => {
 
+  const { loading } = useAuth()
+  const { togglersRedux: { showModal } } = useTogglersRedux()
+
+  if (loading) return <div>Loading...</div>
+
   return (
     <div className='relative h-screen bg-gradient-to-b lg:h-[140vh]'>
       <Head>
-        <title>Create Next App</title>
+        <title>Netflix</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
@@ -56,7 +67,7 @@ const Home = ({
           <Row title="Documentaries" movies={documentaries} />
         </section>
       </main>
-      {/* modal */}
+      {showModal && <Modal />}
     </div>
   )
 }
