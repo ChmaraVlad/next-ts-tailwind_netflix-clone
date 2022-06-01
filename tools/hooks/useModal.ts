@@ -2,11 +2,11 @@
 import { useEffect, useState } from "react"
 
 // bus
-import { useTogglersRedux } from "../redux/bus/client/togglers"
-import { useMovie } from "../redux/bus/movie"
+import { useTogglersRedux } from "../../redux/bus/client/togglers"
+import { useMovie } from "../../redux/bus/movie"
 
 // types
-import { Element, Genre } from "../types"
+import { Element, Genre } from "../../types"
 
 export const useModal = () => {
      const { togglersRedux: { showModal }, setTogglerAction } = useTogglersRedux()

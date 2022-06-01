@@ -8,7 +8,8 @@ import {
 } from 'firebase/auth'
 import { useRouter } from 'next/router'
 import { createContext, useContext, useEffect, useMemo, useState } from 'react'
-import { auth } from '../firebase'
+import { auth } from '../../firebase'
+import { useSubscription } from './useSubscription'
 
 // types
 interface Props {
@@ -40,6 +41,8 @@ export const AuthProvider = ({ children }: Props) => {
      const [error, setError] = useState<string | null>(null)
      const [initialLoading, setInitialLoading] = useState(true)
      const router = useRouter()
+
+     const { setTogglerAction } = useSubscription(user)
 
 
      useEffect(
@@ -90,7 +93,10 @@ export const AuthProvider = ({ children }: Props) => {
 
           await signOut(auth)
                .then(() => {
+                    setTogglerAction({ type: 'subscription', value: false })
                     setUser(null)
+                    router.reload()
+
                })
                .catch((error) => alert(error.message))
                .finally(() => setLoading(false))
