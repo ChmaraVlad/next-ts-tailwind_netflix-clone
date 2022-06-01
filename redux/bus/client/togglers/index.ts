@@ -3,11 +3,12 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { useDispatch } from 'react-redux';
 
 // Tools
-import { useSelector } from '../../../../hooks';
+import { useSelector } from '../../../../tools/hooks';
 
 const initialState = {
-    isLoggedIn:         false,
-    showModal:         false,
+    isLoggedIn: false,
+    showModal: false,
+    subscription: false
 };
 
 // Types
@@ -16,12 +17,12 @@ type Options = { type: TogglersKeys, value: boolean };
 
 // Slice
 export const toggrersSlice = createSlice({
-    name:     'togglers',
+    name: 'togglers',
     initialState,
     reducers: {
         togglerCreatorAction: (state, action: PayloadAction<Options>) => ({
             ...state,
-            [ action.payload.type ]: action.payload.value,
+            [action.payload.type]: action.payload.value,
         }),
         resetTogglersToInitialAction: () => initialState,
     },
@@ -35,8 +36,8 @@ export const useTogglersRedux = () => {
     const dispatch = useDispatch();
 
     return {
-        togglersRedux:          useSelector(({ togglers }) => togglers),
-        setTogglerAction:       (options: Options) => void dispatch(toggrersActions.togglerCreatorAction(options)),
+        togglersRedux: useSelector(({ togglers }) => togglers),
+        setTogglerAction: (options: Options) => void dispatch(toggrersActions.togglerCreatorAction(options)),
         resetTogglersToInitial: () => void dispatch(toggrersActions.resetTogglersToInitialAction()),
     };
 };

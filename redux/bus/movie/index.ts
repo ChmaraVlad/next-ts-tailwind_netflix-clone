@@ -2,7 +2,7 @@
 import { useDispatch } from 'react-redux';
 
 // Tools
-import { useSelector } from '../../../hooks';
+import { useSelector } from '../../../tools/hooks';
 
 // types
 import { Movie } from '../../../types';
