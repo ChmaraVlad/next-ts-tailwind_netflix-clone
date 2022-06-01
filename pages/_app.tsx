@@ -9,16 +9,16 @@ import {
 
 
 // context
-import { AuthProvider } from '../hooks/useAuth'
+import { AuthProvider } from '../tools/hooks/useAuth'
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     // HOC
-    <AuthProvider>
-      <ReduxProvider store={reduxStore}>
+    <ReduxProvider store={reduxStore}>
+      <AuthProvider>
         <Component {...pageProps} />
-      </ReduxProvider>
-    </AuthProvider>
+      </AuthProvider>
+    </ReduxProvider>
   )
 }
 
