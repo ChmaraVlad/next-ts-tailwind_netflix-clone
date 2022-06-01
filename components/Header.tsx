@@ -2,9 +2,9 @@
 import { BellIcon, SearchIcon } from '@heroicons/react/outline'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
-import useAuth from '../hooks/useAuth'
+import useAuth from '../tools/hooks/useAuth'
 
-function Header() {
+export const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false)
   const { logout } = useAuth()
 
@@ -71,4 +71,3 @@ function Header() {
   )
 }
 
-export default Header

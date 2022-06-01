@@ -11,7 +11,7 @@ interface Props {
      // movie: Movie | DocumentData
 }
 
-function Thumbnail({ movie }: Props) {
+export const Thumbnail = ({ movie }: Props) => {
      const { setTogglerAction } = useTogglersRedux()
      const { addCurrentMovie } = useMovie()
      
@@ -37,5 +37,3 @@ function Thumbnail({ movie }: Props) {
           </div>
      )
 }
-
-export default Thumbnail

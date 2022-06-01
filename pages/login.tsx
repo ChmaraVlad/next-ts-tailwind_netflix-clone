@@ -5,7 +5,7 @@ import { useState } from "react"
 import { SubmitHandler, useForm } from "react-hook-form";
 
 // hooks
-import useAuth from "../hooks/useAuth";
+import useAuth from "../tools/hooks/useAuth";
 
 // types
 interface Inputs {

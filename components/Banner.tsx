@@ -18,7 +18,7 @@ interface Props {
      netflixOriginals: Movie[]
 }
 
-function Banner({ netflixOriginals }: Props) {
+export const Banner = ({ netflixOriginals }: Props) => {
      const [movie, setMovie] = useState<Movie | null>(null)
      const { setTogglerAction } = useTogglersRedux()
      const { addCurrentMovie } = useMovie()
@@ -74,4 +74,3 @@ function Banner({ netflixOriginals }: Props) {
      )
 }
 
-export default Banner

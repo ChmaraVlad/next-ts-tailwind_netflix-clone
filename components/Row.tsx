@@ -4,9 +4,11 @@ import { useRef, useState } from "react"
 // utils
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/outline"
 
+// components
+import {Thumbnail} from "./"
+
 // Types
 import { Movie } from "../types"
-import Thumbnail from "./Thumbnail"
 interface Props {
      title: string
      movies: Movie[]
@@ -14,7 +16,7 @@ interface Props {
      // movies: Movie[] | DocumentData[]
 }
 
-function Row({ title, movies }: Props) {
+export const Row = ({ title, movies }: Props) => {
      const rowRef = useRef<HTMLDivElement>(null)
      const [isMoved, setIsMoved] = useState(false)
 
@@ -66,5 +68,3 @@ function Row({ title, movies }: Props) {
           </div>
      )
 }
-
-export default Row

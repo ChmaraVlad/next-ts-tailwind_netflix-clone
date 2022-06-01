@@ -5,11 +5,11 @@ import { FaPlay } from 'react-icons/fa'
 import ReactPlayer from 'react-player/lazy'
 
 // hooks
-import { useModal } from '../hooks'
+import { useModal } from '../tools/hooks'
 import { useMovie } from '../redux/bus/movie'
 import { movieActions } from '../redux/bus/movie/slice'
 
-const Modal = () => {
+export const Modal = () => {
      const { showModal, setTogglerAction, handleClose, trailer, muted, setMuted, genres } = useModal()
      const { movie } = useMovie()
 
@@ -163,5 +163,3 @@ const Modal = () => {
           </MuiModal>
      )
 }
-
-export default Modal
