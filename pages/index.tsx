@@ -1,21 +1,20 @@
 // core
 import Head from 'next/head'
 
-// Bus
-import { useTogglersRedux } from '../redux/bus/client/togglers'
-
 // Components
-import Header from '../components/Header'
-import Banner from '../components/Banner'
-import Row from '../components/Row'
-import Modal from '../components/Modal'
+import { Plans, Header, Row, Banner, Modal } from '../components'
 
 // Utils
-import useAuth from '../hooks/useAuth'
-import customRequests from '../utils/customRequests'
+import useAuth from '../tools/hooks/useAuth'
+import customRequests from '../tools/utils/customRequests'
+import { useModal, useSubscription } from '../tools/hooks'
 
 // Types
 import { Movie } from '../types'
+
+// data products
+import { products } from "../dataLocal/products"
+import { useEffect } from 'react'
 
 interface Props {
   netflixOriginals: Movie[]
@@ -39,10 +38,13 @@ const Home = ({
   trendingNow,
 }: Props) => {
 
-  const { loading } = useAuth()
-  const { togglersRedux: { showModal } } = useTogglersRedux()
+  const { loading, user } = useAuth()
+  const { subscription } = useSubscription(user)
+  const { showModal } = useModal()
 
-  if (loading) return <div>Loading...</div>
+  if (loading || subscription === null) return null
+  
+  if (subscription === false) return <Plans products={products} />
 
   return (
     <div className='relative h-screen bg-gradient-to-b lg:h-[140vh]'>
@@ -50,7 +52,9 @@ const Home = ({
         <title>Netflix</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
+
       <Header />
+
       <main className='relative pl-4 pb-24 lg:space-y-24 lg:pl-16'>
         <Banner netflixOriginals={netflixOriginals} />
         <section
@@ -67,6 +71,7 @@ const Home = ({
           <Row title="Documentaries" movies={documentaries} />
         </section>
       </main>
+
       {showModal && <Modal />}
     </div>
   )
