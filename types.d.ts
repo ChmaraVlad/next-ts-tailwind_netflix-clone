@@ -31,3 +31,14 @@ export interface Element {
      | 'Trailer'
      | 'Teaser'
 }
+
+export interface Product {
+     id: string
+     name: string
+     prices: Array<{unit_amount: string}>
+     metadata: {
+          videoQuality: string, 
+          resolution: string, 
+          portability: boolean
+     }
+}
